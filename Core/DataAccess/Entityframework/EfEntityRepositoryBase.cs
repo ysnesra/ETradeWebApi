@@ -1,5 +1,7 @@
 ﻿using Core.Entities;
+using Core.Paging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace Core.DataAccess.Entityframework
 {
     //Hangi TEntity'yi (yani tabloyu) verirsek onun  IEntityRepository'sini implemente edecek
 
-    public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
+    public class EfEntityRepositoryBase<TEntity, TContext> :IEntityRepository<TEntity>
         where TEntity : class, IEntity, new()
         where TContext : DbContext
     {
@@ -21,6 +23,10 @@ namespace Core.DataAccess.Entityframework
         public EfEntityRepositoryBase(TContext context)
         {
             _context = context;
+        }
+        public IQueryable<TEntity> Query()
+        {
+            return _context.Set<TEntity>();
         }
 
         public void Add(TEntity entity)
@@ -40,18 +46,22 @@ namespace Core.DataAccess.Entityframework
         {
             return _context.Set<TEntity>().SingleOrDefault(filter);
         }
-        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter)  
-        {
-            return await _context.Set<TEntity>().SingleOrDefaultAsync(filter);
-        }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
+        public IPaginate<TEntity> GetList(Expression<Func<TEntity, bool>>? predicate = null,
+                                      Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+                                      Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+                                      int index = 0, int size = 10,
+                                      bool enableTracking = true)
         {
-
-            // context.Set<Product>() ifadesi Dbset deki Productıma yerleş demek
-            return filter == null ? _context.Set<TEntity>().ToList()
-                                 : _context.Set<TEntity>().Where(filter).ToList();
+            IQueryable<TEntity> queryable = Query();
+            if (!enableTracking) queryable = queryable.AsNoTracking();
+            if (include != null) queryable = include(queryable);
+            if (predicate != null) queryable = queryable.Where(predicate);
+            if (orderBy != null)
+                return orderBy(queryable).ToPaginate(index, size);
+            return queryable.ToPaginate(index, size);
         }
+      
 
         public void SaveChanges()
         {
@@ -63,5 +73,7 @@ namespace Core.DataAccess.Entityframework
             var updatedEntity = _context.Entry(entity);
             updatedEntity.State = EntityState.Modified;
         }
+
+        
     }
 }

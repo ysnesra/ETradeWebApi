@@ -2,6 +2,7 @@ using Business.DependencyResolvers;
 using DataAccess.Concrete.Entityframework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.ComponentModel;
 using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-
-
+// IocContainer
+builder.Services.AddBusinessService();   //.net in kendi Ioc Containerýný kulllanýrýz.//DependencyEnjection.cs 'de oluþturugum metotu ekliyorum
+builder.Services.ServisRelationShip(builder.Configuration);  //.net in kendi IoC Containerýnda katmanlarýný ililþksini yazdýðým extention metotu ekliyorum //ServisRelationShip() -> ServiceExtention.cs de oluþturduðum metot
 #region MyServices
 //var connectingString = builder.Configuration.GetConnectionString("MySqlConnection");
 //builder.Services.AddDbContext<ETradeAppDbContext>(opt =>
@@ -20,14 +22,9 @@ builder.Services.AddControllers();
 //});
 #endregion
 
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.ServisRelationShip(builder.Configuration);  //.net in kendi IoC Containerýnda katmanlarýný ililþksini yazdýðým extention metotu ekliyorum //ServisRelationShip() -> ServiceExtention.cs de oluþturduðum metot
-
-
 
 var app = builder.Build();
 
