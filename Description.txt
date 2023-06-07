@@ -1,0 +1,10 @@
+ETradeWepApi projesi .NET Core 6'da; n-Tier Architecture yapýsý ile ORM Toollarýndan EntitiyFramework ve CodeFirst Tekniðini kullanarak oluþturduðum E-ticaret Api projesidir.
+
+Bu uygulama; , kullanýcýlarýn ürünlerle ilgili bilgileri alabildiði, yeni ürün ekleyebildiði ve varolan ürünleri güncelleyebildiði bir e-ticaret platformudur.
+
+1.CodeFirst ORM tekniðiyle MySQL'de database oluþturuldu -> EtradeAppDb isminde 
+  //User(N)- Product(1) Relationship kuruldu
+2.EntityFramework kütüphaneleri ve MySql.Data kütüphanesi DataAccess ve Core katmanlarýna yüklendi.
+3.Core Katmanýna --> IEntity,IDto,
+	                 IEntityRepository (CRUD iþlemelerinin generic olarak oluþturuldu)
+					 EfEntityRepositoryBase ((TEntity,TContext) hangi tablo, hangi veritabaný verillirse ona göre CRUD iþlemlerini yapacak base sýnýfý oluþturuldu.
