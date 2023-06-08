@@ -21,4 +21,9 @@ Bu uygulama; , kullanýcýlarýn ürünlerle ilgili bilgileri alabildiði, yeni ürün e
 *.Business-> DependencyResolvers ->DependecyEnjection.cs clasýnda "AddBusinessService" isminde extention methot oluþturuldu.Ve program.cs ye kullanaðý service "builder.Services.AddBusinessService()" eklendi.
 
 5.Katmanlar oluþturuldu.
-  Business katmanýna Service ve Managerlar oluþturuldu. DataAccess katmanýna Dal ve EfDal oluþturuldu
+  Business katmanýna Service ve Managerlar oluþturuldu. DataAccess katmanýna Dal ve EfDal oluþturuldu.
+
+6.Product ve User CRUD iþlemleri yapýldý.
+
+7.Sayfalama yapýsý eklendi.
+  Core katmanýnda-> Paging klasöründe generic olarak oluþturuldu.

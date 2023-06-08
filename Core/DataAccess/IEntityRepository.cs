@@ -20,6 +20,7 @@ namespace Core.DataAccess
 
     public interface IEntityRepository<T> where T : class, IEntity, new()
     {         
+
         T Get(Expression<Func<T, bool>> filter);
         IPaginate<T> GetList(Expression<Func<T, bool>>? predicate = null,
                              Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
@@ -32,8 +33,6 @@ namespace Core.DataAccess
         void Update(T entity);
 
         void Delete(T entity);
-
-        void SaveChanges();
         
     }
 }

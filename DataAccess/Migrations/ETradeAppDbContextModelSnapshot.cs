@@ -121,7 +121,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.User", "User")
                         .WithMany("Products")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");

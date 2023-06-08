@@ -34,12 +34,14 @@ namespace Core.DataAccess.Entityframework
             //using içine yazdığımız nesneler using bitince GarbageCollector tarafından bellekten atılır
             var addedEntity = _context.Entry(entity);  //eklenen 'entity'yi git veritabanıyla ilişkilendir. referansı yakala
             addedEntity.State = EntityState.Added;    //o aslında eklenecek bir nesne
+            _context.SaveChanges();
         }
 
         public void Delete(TEntity entity)
         {
             var deletedEntity = _context.Entry(entity);
             deletedEntity.State = EntityState.Deleted;
+            _context.SaveChanges();
         }
 
         public TEntity Get(Expression<Func<TEntity, bool>> filter)  //tek data getirecek metotumuz
@@ -61,19 +63,12 @@ namespace Core.DataAccess.Entityframework
                 return orderBy(queryable).ToPaginate(index, size);
             return queryable.ToPaginate(index, size);
         }
-      
-
-        public void SaveChanges()
-        {
-            _context.SaveChanges();
-        }
 
         public void Update(TEntity entity)
         {
             var updatedEntity = _context.Entry(entity);
             updatedEntity.State = EntityState.Modified;
-        }
-
-        
+            _context.SaveChanges();
+        }        
     }
 }

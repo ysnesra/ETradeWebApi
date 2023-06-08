@@ -8,7 +8,7 @@ namespace Core.Paging
 {
     public class PageRequest
     {
-        public int Page { get; set; }    //Kaçıncı sayfa
-        public int PageSize { get; set; }   //Bir sayfada kaç data 
+        public int Page { get; set; } = 0;    //Kaçıncı sayfa
+        public int PageSize { get; set; } = 10;   //Bir sayfada kaç data 
     }
 }

@@ -26,8 +26,10 @@ namespace DataAccess.Concrete.Entityframework
             modelBuilder.Entity<Product>()
                 .HasOne(a => a.User)
                 .WithMany(a => a.Products)           //Bir kullanıcının birden çok ürünü olabilir
-                .HasForeignKey(a => a.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasForeignKey(a => a.UserId);              
+
+            modelBuilder.Entity<Product>().HasKey(a => a.ProductId);
+            modelBuilder.Entity<User>().HasKey(a => a.UserId);
 
             //Seed Data
             //Migrate edince başlangıçta oluşacak test datalar 
