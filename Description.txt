@@ -30,5 +30,32 @@ Bu uygulama; , kullanýcýlarýn ürünlerle ilgili bilgileri alabildiði, yeni ürün e
 
 8.BaseEntity oluþturuldu.Id alaný bütün Entitlerde ortak olduðundan generic yapýya taþýndý.
 
-9.Filtreleme yapýsý eklendi.
+9.Jwt Authentication yapýsý oluþturuldu.
+  * appsettings e Jwt configurationu  "TokenOptions" oluþturuldu.
+  * Business katmanýnda ->Utilities ->Security klasörüne ->JWT klasörü oluþturuldu.Ýçine Helper metotlar oluþturuldu.
+
+10. *Login olan kiþi database de varsa CreteToken metotuyla Jwt Token üretir.
+    *program.cs ye JwtBearer service'i eklenerek JWT authentication yapýlandýrýlmasý yapýldý.
+
+11. * SecurityKeyHelper -> appsetting de oluþturduðumuz securityKey deðerini byte[] array formatýna çevirmek için CreateSecurityKey metotu oluþturuldu
+  * SigningCredentialsHelper -> webApinin hangi anahtarý hangi þifreleme algoritmasýný kullanacaðýný söylediðimiz metot
+
+  * AccessToken classý -> eriþim anahtarý // Token ve Expiration deðiþkenlerini tanýmlandý
+  * ITokenHelper -> CreateToken metotu oluþturuldu (veritabanýndaki user ve claimlere göre JWT Token üretecek)
+  * JwtHelper -> Jwt'nin oluþturulduðu class 
+  * TokenOptions -> Configuration ile appsettings.json da okuduðu deðerleri atayacaðýmýz deðiþkenleri tanýmladýðým class
+
+  *Extensions metot tanýmladým.Claimler için   
+   * ClaimExtensions -> ClaimExtensions da tanýmladýðýmýz metotlarý JwtHelper.cs ýnda çaðýrýrýz
+   * ClaimPrincipalExtensions -> Jwt den gelen claimlerini okumak için .Net deki "ClaimsPrincipal" clasýna Claims metotlarý eklendi
+   * ServiceCollectionExtensions ->
+
+   * Authorization (Yetkilnedirme) Aspectleri, Business katmanýna yazýldý
+   BusinessAspect klasörü -> Autofac klasörü -> SecuredOperation.cs clasý oluþturuldu
+
+   *!!! SecuredOperation -> Aspect olarak verceðimiz yetkilendirme metotu
+   * ServicTool -> WebApi de oluuþturduðumuz Injectionlar gibi iliþkileri oluþturmamýzý saðlar.Aspecti Inject  edebilmek için oluþturdupumuz bir ExtensionsMetottur
+	
+
+11.Filtreleme yapýsý eklendi.
   Core katmanýnda-> Paging klasöründe sayfalama kýsmý generic olarak oluþturuldu.

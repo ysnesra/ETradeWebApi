@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Core.Paging;
 using Entities.Concrete;
 using Entities.DTOs.Product;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    [SecuredOperation]   //login olmuş kullanıcıların yetkiye sahip olduğunu gösteren Aspect
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -58,8 +60,7 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
-        }
-       
+        }      
 
         [HttpPost("add")]
         public IActionResult Add(CreatedProductDto product)
