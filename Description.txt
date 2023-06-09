@@ -26,4 +26,9 @@ Bu uygulama; , kullanýcýlarýn ürünlerle ilgili bilgileri alabildiði, yeni ürün e
 6.Product ve User CRUD iþlemleri yapýldý.
 
 7.Sayfalama yapýsý eklendi.
-  Core katmanýnda-> Paging klasöründe generic olarak oluþturuldu.
+  Core katmanýnda-> Paging klasöründe sayfalama kýsmý generic olarak oluþturuldu.
+
+8.BaseEntity oluþturuldu.Id alaný bütün Entitlerde ortak olduðundan generic yapýya taþýndý.
+
+9.Filtreleme yapýsý eklendi.
+  Core katmanýnda-> Paging klasöründe sayfalama kýsmý generic olarak oluþturuldu.

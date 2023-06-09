@@ -24,10 +24,10 @@ namespace DataAccess.Concrete.Entityframework
         public List<ProductDetailDto> GetListProductWithUser(int userId)
         {
             var result = _context.Products.Include(x => x.User)
-                                          .Where(x=>x.UserId==userId)
+                                          .Where(x=>x.Id==userId)
                                           .Select(x=>new ProductDetailDto
                                           {
-                                              ProductId = x.ProductId,
+                                              ProductId = x.Id,
                                               ProductName = x.ProductName,
                                               Price = x.Price,
                                               Description = x.Description,

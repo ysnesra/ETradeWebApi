@@ -18,7 +18,7 @@ namespace Core.DataAccess
     //Örnegin GetAll() ile Category ye göre getir diyebileceğiz
     //Örnegin Get() ile Tek bir ürünü getirme//Tek  bir listenin detayına bakma
 
-    public interface IEntityRepository<T> where T : class, IEntity, new()
+    public interface IEntityRepository<T> where T :BaseEntity
     {         
 
         T Get(Expression<Func<T, bool>> filter);

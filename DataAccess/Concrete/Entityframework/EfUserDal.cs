@@ -26,7 +26,7 @@ namespace DataAccess.Concrete.Entityframework
                                            .Where(x=>x.Email == email)
                                            .Select(x => new UserDetailDto
                                            {
-                                                UserId = x.UserId,
+                                                UserId = x.Id,
                                                 FirstName = x.FirstName,
                                                 LastName = x.LastName,
                                                 Email = x.Email,

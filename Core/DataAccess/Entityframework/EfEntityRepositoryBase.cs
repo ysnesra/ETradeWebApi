@@ -14,7 +14,7 @@ namespace Core.DataAccess.Entityframework
     //Hangi TEntity'yi (yani tabloyu) verirsek onun  IEntityRepository'sini implemente edecek
 
     public class EfEntityRepositoryBase<TEntity, TContext> :IEntityRepository<TEntity>
-        where TEntity : class, IEntity, new()
+        where TEntity : BaseEntity
         where TContext : DbContext
     {
 

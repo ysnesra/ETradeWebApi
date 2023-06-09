@@ -16,7 +16,7 @@ namespace DataAccess.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -29,7 +29,7 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -37,7 +37,7 @@ namespace DataAccess.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ProductName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -48,39 +48,39 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Products_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "Email", "FirstName", "LastName", "Password" },
+                columns: new[] { "Id", "Email", "FirstName", "LastName", "Password" },
                 values: new object[] { 1, "esra@gmail.com", "Esra", "Yaşın", "esra1234" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "Email", "FirstName", "LastName", "Password" },
+                columns: new[] { "Id", "Email", "FirstName", "LastName", "Password" },
                 values: new object[] { 2, "ahmet@gmail.com", "Ahmet", "Benk", "ahmet1234" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "Email", "FirstName", "LastName", "Password" },
+                columns: new[] { "Id", "Email", "FirstName", "LastName", "Password" },
                 values: new object[] { 3, "mehmet@gmail.com", "Mehmet", "Mutlu", "mehmet1234" });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "Description", "Price", "ProductName", "UserId" },
+                columns: new[] { "Id", "Description", "Price", "ProductName", "UserId" },
                 values: new object[] { 1, "Apple 2023 Model", 10000m, "Laptop", 1 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "Description", "Price", "ProductName", "UserId" },
+                columns: new[] { "Id", "Description", "Price", "ProductName", "UserId" },
                 values: new object[] { 2, "Samsung 2023 Model", 8000m, "CepTelefonu", 1 });
 
             migrationBuilder.CreateIndex(

@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Product : IEntity
-    { 
-        public int ProductId { get; set; }
+    public class Product : BaseEntity
+    {       
         public string ProductName { get; set; }
         public decimal? Price { get; set; }
         public string? Description { get; set; }

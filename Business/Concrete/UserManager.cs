@@ -31,7 +31,7 @@ namespace Business.Concrete
 
         public IDataResult<User> GetById(int userId)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId), Messages.UserDetail);
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId), Messages.UserDetail);
         }    
         public IResult Add(UserRegisterDto model)
         {
@@ -50,7 +50,7 @@ namespace Business.Concrete
         {
             User deleteUser = new User()
             {
-                UserId = model.UserId,
+                Id = model.UserId,
             };
             _userDal.Delete(deleteUser);
             return new SuccessResult(Messages.UserDeleted);
@@ -60,7 +60,7 @@ namespace Business.Concrete
         {
             User updateUser = new User()
             {               
-                UserId = model.UserId,
+                Id = model.UserId,
                 FirstName=model.FirstName,
                 LastName= model.LastName,
                 Email= model.Email,

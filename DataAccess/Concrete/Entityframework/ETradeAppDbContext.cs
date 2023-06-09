@@ -28,19 +28,19 @@ namespace DataAccess.Concrete.Entityframework
                 .WithMany(a => a.Products)           //Bir kullanıcının birden çok ürünü olabilir
                 .HasForeignKey(a => a.UserId);              
 
-            modelBuilder.Entity<Product>().HasKey(a => a.ProductId);
-            modelBuilder.Entity<User>().HasKey(a => a.UserId);
+            modelBuilder.Entity<Product>().HasKey(a => a.Id);
+            modelBuilder.Entity<User>().HasKey(a => a.Id);
 
             //Seed Data
             //Migrate edince başlangıçta oluşacak test datalar 
             modelBuilder.Entity<Product>().HasData(
-                new Product { ProductId = 1, ProductName = "Laptop", Price = 10000, Description = "Apple 2023 Model", UserId = 1 },
-                new Product { ProductId = 2, ProductName = "CepTelefonu", Price = 8000, Description = "Samsung 2023 Model", UserId = 1 });
+                new Product { Id = 1, ProductName = "Laptop", Price = 10000, Description = "Apple 2023 Model", UserId = 1 },
+                new Product { Id = 2, ProductName = "CepTelefonu", Price = 8000, Description = "Samsung 2023 Model", UserId = 1 });
 
             modelBuilder.Entity<User>().HasData(
-                new User { UserId = 1, FirstName = "Esra", LastName = "Yaşın", Email = "esra@gmail.com", Password = "esra1234" },
-                new User { UserId = 2, FirstName = "Ahmet", LastName = "Benk", Email = "ahmet@gmail.com", Password = "ahmet1234" },
-                new User { UserId = 3, FirstName = "Mehmet", LastName = "Mutlu", Email = "mehmet@gmail.com", Password = "mehmet1234" });
+                new User { Id = 1, FirstName = "Esra", LastName = "Yaşın", Email = "esra@gmail.com", Password = "esra1234" },
+                new User { Id = 2, FirstName = "Ahmet", LastName = "Benk", Email = "ahmet@gmail.com", Password = "ahmet1234" },
+                new User { Id = 3, FirstName = "Mehmet", LastName = "Mutlu", Email = "mehmet@gmail.com", Password = "mehmet1234" });
         }
     }
 }

@@ -21,7 +21,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.Product", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -38,7 +38,7 @@ namespace DataAccess.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -47,7 +47,7 @@ namespace DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = 1,
+                            Id = 1,
                             Description = "Apple 2023 Model",
                             Price = 10000m,
                             ProductName = "Laptop",
@@ -55,7 +55,7 @@ namespace DataAccess.Migrations
                         },
                         new
                         {
-                            ProductId = 2,
+                            Id = 2,
                             Description = "Samsung 2023 Model",
                             Price = 8000m,
                             ProductName = "CepTelefonu",
@@ -65,7 +65,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -85,14 +85,14 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
-                            UserId = 1,
+                            Id = 1,
                             Email = "esra@gmail.com",
                             FirstName = "Esra",
                             LastName = "Yaşın",
@@ -100,7 +100,7 @@ namespace DataAccess.Migrations
                         },
                         new
                         {
-                            UserId = 2,
+                            Id = 2,
                             Email = "ahmet@gmail.com",
                             FirstName = "Ahmet",
                             LastName = "Benk",
@@ -108,7 +108,7 @@ namespace DataAccess.Migrations
                         },
                         new
                         {
-                            UserId = 3,
+                            Id = 3,
                             Email = "mehmet@gmail.com",
                             FirstName = "Mehmet",
                             LastName = "Mutlu",

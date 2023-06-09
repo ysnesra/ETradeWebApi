@@ -40,7 +40,7 @@ namespace Business.Concrete
         {
             Product deleteProduct = new Product()
             {
-                ProductId=model.ProductId,                         
+                Id=model.ProductId,                         
             };           
             _productDal.Delete(deleteProduct);
             return new SuccessResult(Messages.ProductDeleted);
@@ -53,7 +53,7 @@ namespace Business.Concrete
 
         public IDataResult<Product> GetById(int productId)
         {
-            return new SuccessDataResult<Product>(_productDal.Get(c => c.ProductId == productId), Messages.ProductDetail);
+            return new SuccessDataResult<Product>(_productDal.Get(c => c.Id == productId), Messages.ProductDetail);
         }
 
         public IDataResult<IPaginate<Product>> GetByUserId(int userId, PageRequest pageRequest)
@@ -71,7 +71,7 @@ namespace Business.Concrete
         {
             Product updateProduct = new Product()
             {
-                ProductId = model.ProductId,
+                Id = model.ProductId,
                 ProductName = model.ProductName,
                 Description = model.Description,
                 Price = model.Price,
