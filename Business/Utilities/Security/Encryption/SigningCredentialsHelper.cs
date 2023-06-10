@@ -15,7 +15,7 @@ namespace Business.Utilities.Security.Encryption
         //ASP.Netin(webApi nin) Hangi anahtarı hangi şifreleme algoritmasını kullancak onu söylediğimiz metot
         public static SigningCredentials CreateSigningCredentials(SecurityKey securityKey)
         {
-            return new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
+            return new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             //anahtar olarak secirtyKey kullan şifreleme olarakta "SecurityAlgorithms.HmacSha512Signature"ı kullan.
 
         }

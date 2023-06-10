@@ -34,7 +34,10 @@ namespace Business.Utilities.Security.JWT
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration); 
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
             var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
+
             
+
+
             var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials);
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();//Elimizdeki token bilgisini yazdırmak.
             var token = jwtSecurityTokenHandler.WriteToken(jwt);//Elimizdeki tokeni stringe çevirdik.
@@ -49,8 +52,8 @@ namespace Business.Utilities.Security.JWT
 
         //JWT oluşturan metot
         //Hangi token bilgileri, hangi kullanıcı , hangi imza ile, hangi rolleri içeriyorsa bunları parametre olarak alıp Jwt oluşturan metot o
-        public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user,
-            SigningCredentials signingCredentials)
+        public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user,SigningCredentials signingCredentials)
+            
         {
             var jwt = new JwtSecurityToken(
                 issuer: tokenOptions.Issuer,
@@ -60,7 +63,7 @@ namespace Business.Utilities.Security.JWT
                 claims: SetClaims(user),   //kullanıcının claimlerini oluşturmak için SetClaims metotu oluşturuldu
                 signingCredentials: signingCredentials
             );
-            
+ 
             return jwt;
         }
 
