@@ -3,12 +3,14 @@ using Business.BusinessAspects.Autofac;
 using Core.Paging;
 using Entities.Concrete;
 using Entities.DTOs.Product;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
-    [SecuredOperation]   //login olmuş kullanıcıların yetkiye sahip olduğunu gösteren Aspect
+    //[SecuredOperation]   //login olmuş kullanıcıların yetkiye sahip olduğunu gösteren Aspect
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase

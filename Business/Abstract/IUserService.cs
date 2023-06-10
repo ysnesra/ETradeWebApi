@@ -17,7 +17,8 @@ namespace Business.Abstract
         IResult Update(UpdatedUserDto user);
         IResult Delete(DeletedUserDto user);
         IDataResult<IPaginate<User>> GetAll(PageRequest pageRequest);
-        IDataResult<User> GetById(int userId);        
+        IDataResult<UserDetailGetByIdDto> GetById(int userId);        
         IDataResult<User> GetByEmail(string email);
+        string CurrentUser(Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor);
     }
 }

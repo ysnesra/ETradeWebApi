@@ -12,11 +12,14 @@ namespace WebAPI.Controllers
     public class UserController : ControllerBase
     {
         IUserService _userService;
+        Microsoft.AspNetCore.Http.IHttpContextAccessor _contextAccessor;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IHttpContextAccessor contextAccessor)
         {
             _userService = userService;
+            _contextAccessor = contextAccessor;
         }
+       
         [HttpGet("getall")]
         public IActionResult GetAll([FromQuery] PageRequest pageRequest)
         {
@@ -29,9 +32,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById()
         {
-            var result = _userService.GetById(id);
+            var user = _userService.CurrentUser(_contextAccessor);
+
+            var result = _userService.GetById(Convert.ToInt32(user));
+
+         
             if (result.Success)
             {
                 return Ok(result);

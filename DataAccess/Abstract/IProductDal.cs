@@ -13,5 +13,7 @@ namespace DataAccess.Abstract
     {
         //ürünleri kullanıcı isimleri ile listeleyen metot
         List<ProductDetailDto> GetListProductWithUser(int userId);
+
+        bool GetProductByUserId(int userId, int productId);
     }
 }

@@ -15,8 +15,10 @@ namespace Business.Constants
         public static string ProductNameInvalid = "Ürün ismi geçersiz";
         public static string ProductUpdated = "Ürün bilgileri güncellendi";
         public static string ProductDeleted = "Ürün silindi";
-       
-       
+        public static string ProductInvalid = "Ürün bulunamadı";
+
+
+
         public static string UsersListed = "Kullanıcılar listelendi";
         public static string UserDetail = "Kullanıcının detay bilgilerini getirdi";        
         public static string UserEmailInvalid = "Mail adresi yanlış ";

@@ -36,5 +36,17 @@ namespace DataAccess.Concrete.Entityframework
             return result;
 
         }
+        public bool GetProductByUserId(int userId,int productId)
+        {
+            if (_context.Products.Any(_=>_.Id == productId && _.UserId == userId))
+            {
+                return true;
+            }
+
+         
+
+            return false;
+        }
+         
     }
 }

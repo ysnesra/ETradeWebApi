@@ -2,10 +2,12 @@
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs.User;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +41,12 @@ namespace DataAccess.Concrete.Entityframework
                 }
                 return null;
             
+        }
+
+        public string CurrentUser(IHttpContextAccessor httpContextAccessor)
+        {
+            var userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return userId;
         }
     }
 }

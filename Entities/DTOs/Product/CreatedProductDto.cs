@@ -14,6 +14,6 @@ namespace Entities.DTOs.Product
         public string? Description { get; set; }
 
         // Her ürün bir kullanıcıya ait olacak. Boşta ürün olmayacak
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
     }
 }

@@ -17,10 +17,14 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         private IProductDal _productDal;
+        private readonly IUserDal _userDal;
+        private readonly Microsoft.AspNetCore.Http.IHttpContextAccessor _contextAccessor;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal, IUserDal userDal, Microsoft.AspNetCore.Http.IHttpContextAccessor contextAccessor)
         {
+            _userDal = userDal;
             _productDal = productDal;
+            _contextAccessor = contextAccessor;
         }
 
         public IResult Add(CreatedProductDto model)
@@ -30,7 +34,7 @@ namespace Business.Concrete
                    ProductName=model.ProductName,
                    Description=model.Description,
                    Price=model.Price,
-                   UserId=model.UserId
+                   UserId=Convert.ToInt32(_userDal.CurrentUser(_contextAccessor))
                 };
             _productDal.Add(newProduct);   
             return new SuccessResult(Messages.ProductAdded);
@@ -38,6 +42,11 @@ namespace Business.Concrete
 
         public IResult Delete(DeletedProductDto model)
         {
+            var result = _productDal.GetProductByUserId(Convert.ToInt32(_userDal.CurrentUser(_contextAccessor)), model.ProductId);
+
+            if (!result)
+                return new ErrorDataResult<Product>(Messages.ProductInvalid);
+
             Product deleteProduct = new Product()
             {
                 Id=model.ProductId,                         
@@ -53,7 +62,12 @@ namespace Business.Concrete
 
         public IDataResult<Product> GetById(int productId)
         {
-            return new SuccessDataResult<Product>(_productDal.Get(c => c.Id == productId), Messages.ProductDetail);
+            var productdb = _productDal.Get(c => c.Id == productId && c.UserId == Convert.ToInt32(_userDal.CurrentUser(_contextAccessor)));
+            if (productdb == null)
+            {
+                return new ErrorDataResult<Product>( productdb,false,Messages.ProductInvalid);
+            }
+            return new SuccessDataResult<Product>(productdb, Messages.ProductDetail);
         }
 
         public IDataResult<IPaginate<Product>> GetByUserId(int userId, PageRequest pageRequest)
@@ -69,13 +83,19 @@ namespace Business.Concrete
 
         public IResult Update(UpdatedProductDto model)
         {
+            var result = _productDal.GetProductByUserId(Convert.ToInt32(_userDal.CurrentUser(_contextAccessor)), model.ProductId);
+
+            if(!result)
+                return new ErrorDataResult<Product>(Messages.ProductInvalid);
+            
+
             Product updateProduct = new Product()
             {
                 Id = model.ProductId,
                 ProductName = model.ProductName,
                 Description = model.Description,
                 Price = model.Price,
-                UserId = model.UserId
+                UserId = Convert.ToInt32(_userDal.CurrentUser(_contextAccessor))
             };
             _productDal.Update(updateProduct);
             return new SuccessResult(Messages.ProductUpdated);

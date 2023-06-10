@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,20 +19,33 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         private IUserDal _userDal;
+       
 
         public UserManager(IUserDal userDal)
         {
             _userDal = userDal;
         }
+
+
         public IDataResult<IPaginate<User>> GetAll(PageRequest pageRequest)
         {
             return new SuccessDataResult<IPaginate<User>>(_userDal
                 .GetList(index: pageRequest.Page, size: pageRequest.PageSize), Messages.UsersListed);
         }
 
-        public IDataResult<User> GetById(int userId)
-        {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId), Messages.UserDetail);
+        public IDataResult<UserDetailGetByIdDto> GetById(int userId)
+        {            
+            var userdb = _userDal.Get(u => u.Id == userId);
+            UserDetailGetByIdDto user = new UserDetailGetByIdDto
+            {
+                UserId = userdb.Id,
+                FirstName = userdb.FirstName,
+                LastName = userdb.LastName,
+                Email = userdb.Email,
+                Password = userdb.Password,
+            };
+
+            return new SuccessDataResult<UserDetailGetByIdDto>(user, Messages.UserDetail);
         }    
         public IResult Add(UserRegisterDto model)
         {
@@ -74,7 +88,12 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
         }
-
+        public string CurrentUser(Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor)
+        {
+            var userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return userId;
+        }
+       
     }
 }
 
