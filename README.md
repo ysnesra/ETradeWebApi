@@ -1,9 +1,4 @@
 # ETradeWebApi
-.NET Mvc Core 6'da, ORM Toollarından EntityFramework ile Codefirst tekniği kullanılarak geliştirdiğm CallCenter Projesidir
-
-
-**CALL CENTER UYGULAMASI**
-
 ETradeWepApi projesi .NET Core 6'da; n-Tier Architecture yapısı ile ORM Toollarından EntitiyFramework ve CodeFirst Tekniğini kullanarak oluşturduğum E-ticaret Api projesidir.
 
 Bu uygulama; , kullanıcıların ürünlerle ilgili bilgileri alabildiği, yeni ürün ekleyebildiği ve varolan ürünleri güncelleyebildiği bir e-ticaret platformudur.
