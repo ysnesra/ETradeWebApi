@@ -43,20 +43,23 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        //Ürün detayını kullanıcı ismi ile birlikte getirir 
         [HttpGet("getproductdetails")]
-        public IActionResult GetProductDetails(int userId)
+        public IActionResult GetProductDetails(int productId)
         {
-            var result = _productService.GetProductDetails(userId);
+            var result = _productService.GetProductDetails(productId);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
+
+        //Login olan Kullanıcıya ait tüm ürünleri listeleyen metot
         [HttpGet("getproductbyuserid")]
-        public IActionResult GetProductByUserId(int userId,[FromQuery] PageRequest pageRequest)
+        public IActionResult GetProductByUserId([FromQuery] PageRequest pageRequest)
         {
-            var result = _productService.GetByUserId(userId, pageRequest);
+            var result = _productService.GetByUserId(pageRequest);
             if (result.Success)
             {
                 return Ok(result);

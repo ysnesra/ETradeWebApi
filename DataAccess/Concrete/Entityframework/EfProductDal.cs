@@ -20,33 +20,35 @@ namespace DataAccess.Concrete.Entityframework
         {
             _context = context;
         }
-
-        public List<ProductDetailDto> GetListProductWithUser(int userId)
+    
+        public ProductDetailDto GetProductWithUser(int userId, int productId)
         {
-            var result = _context.Products.Include(x => x.User)
-                                          .Where(x=>x.Id==userId)
-                                          .Select(x=>new ProductDetailDto
-                                          {
-                                              ProductId = x.Id,
-                                              ProductName = x.ProductName,
-                                              Price = x.Price,
-                                              Description = x.Description,
-                                              UserName = $"{x.User.FirstName}{x.User.LastName}",
-                                          }).ToList();
+            var result = _context.Products.Include(x=>x.User)
+                                .Where(x => x.UserId == userId && x.Id==productId)
+                                .Select(x => new ProductDetailDto
+                                {
+                                    ProductId = x.Id,
+                                    ProductName = x.ProductName,
+                                    Price = x.Price,
+                                    Description = x.Description,
+                                    UserName = $"{x.User.FirstName}{x.User.LastName}",
+                                }).FirstOrDefault();
+            if (result == null)
+            {
+                return null;
+            }
             return result;
-
         }
+
         public bool GetProductByUserId(int userId,int productId)
         {
             if (_context.Products.Any(_=>_.Id == productId && _.UserId == userId))
             {
                 return true;
             }
-
-         
-
             return false;
         }
-         
+
+       
     }
 }

@@ -23,7 +23,7 @@ namespace Business.Abstract
         IDataResult<Product> GetById(int productId);
 
         //ürünleri kullanıcı isimleri ile listeleyen metot
-        IDataResult<List<ProductDetailDto>> GetProductDetails(int userId);
-        IDataResult<IPaginate<Product>> GetByUserId(int userId, PageRequest pageRequest);
+        IDataResult<ProductDetailDto> GetProductDetails(int productId);
+        IDataResult<IPaginate<Product>> GetByUserId(PageRequest pageRequest);
     }
 }

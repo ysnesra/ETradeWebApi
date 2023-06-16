@@ -55,11 +55,18 @@ Bu uygulama; , kullanýcýlarýn ürünlerle ilgili bilgileri alabildiði, yeni ürün e
    BusinessAspect klasörü -> Autofac klasörü -> SecuredOperation.cs clasý oluþturuldu
 
    *!!! SecuredOperation -> Aspect olarak verceðimiz yetkilendirme metotu
-   * ServicTool -> WebApi de oluuþturduðumuz Injectionlar gibi iliþkileri oluþturmamýzý saðlar.Aspecti Inject  edebilmek için oluþturdupumuz bir ExtensionsMetottur
+   * ServicTool -> WebApi de oluuþturduðumuz Injectionlar gibi iliþkileri oluþturmamýzý saðlar.Aspecti Inject edebilmek için oluþturduðumuz bir ExtensionsMetottur
 
 12.Login ve Register iþlemleri için ;
    IAuthService e kullanýlacak metotlar tanýmlanýr.UserLoginDto ve UserRegisterDto larý oluþturuldu.
    AuthManager kayýt olmak için gerekli operasyonlarý yazýyor
 
-13.Filtreleme yapýsý eklendi.
-  Core katmanýnda-> Paging klasöründe sayfalama kýsmý generic olarak oluþturuldu.
+13.
+Product kýsmýnda;
+   Kullanýcý login olduktan sonra iþlem yapabiliyor.
+   Bunun için; ProductController a [Authorize] attributeu koyuldu.
+   Swagger da; login olunca oluþan token -> Authorize kýsmýna yapýþtýrýlýp, login olup, iþlemler öyle yapýldý.
+   Ürün Listeleme,Ekleme,Güncelleme ve Silme iþlemlerinde tokendaki userId kullanýlanarak kontrol yapýldý. 
+   
+User kýsmýnda;
+   Kullanýcý; listeleme,ekleme,güncelleme,silme kýsmýnda Authorize olma þartý yok.
