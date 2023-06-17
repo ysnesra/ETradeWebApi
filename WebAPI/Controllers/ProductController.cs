@@ -65,7 +65,18 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
-        }      
+        }
+
+        [HttpGet("getproductsbyfilter")]
+        public IActionResult GetProductsByFilter(string productName,[FromQuery] PageRequest pageRequest)
+        {
+            var result = _productService.GetProductsByProductName(productName,pageRequest);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
         [HttpPost("add")]
         public IActionResult Add(CreatedProductDto product)

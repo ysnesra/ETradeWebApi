@@ -25,5 +25,8 @@ namespace Business.Abstract
         //ürünleri kullanıcı isimleri ile listeleyen metot
         IDataResult<ProductDetailDto> GetProductDetails(int productId);
         IDataResult<IPaginate<Product>> GetByUserId(PageRequest pageRequest);
+
+        //Ürünleri; ürün adına göre filtreli getiren metot
+        IDataResult<IPaginate<Product>> GetProductsByProductName(string filter, PageRequest pageRequest);
     }
 }

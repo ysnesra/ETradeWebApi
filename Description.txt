@@ -36,7 +36,7 @@ Bu uygulama; , kullanýcýlarýn ürünlerle ilgili bilgileri alabildiði, yeni ürün e
 
 10. *Login olan kiþi database de varsa CreteToken metotuyla Jwt Token üretir.
     *program.cs ye JwtBearer service'i eklenerek JWT authentication yapýlandýrýlmasý yapýldý.
-	*Autofac yapýsý oluþturuldu.
+	*Autofac yapýsý oluþturuldu.Ama kullanmadým.Role vermediðim için [Authorize] attribute ý yeterli oldu.
 
 11. * SecurityKeyHelper -> appsetting de oluþturduðumuz securityKey deðerini byte[] array formatýna çevirmek için CreateSecurityKey metotu oluþturuldu
   * SigningCredentialsHelper -> webApinin hangi anahtarý hangi þifreleme algoritmasýný kullanacaðýný söylediðimiz metot
@@ -57,9 +57,9 @@ Bu uygulama; , kullanýcýlarýn ürünlerle ilgili bilgileri alabildiði, yeni ürün e
    *!!! SecuredOperation -> Aspect olarak verceðimiz yetkilendirme metotu
    * ServicTool -> WebApi de oluuþturduðumuz Injectionlar gibi iliþkileri oluþturmamýzý saðlar.Aspecti Inject edebilmek için oluþturduðumuz bir ExtensionsMetottur
 
-12.Login ve Register iþlemleri için ;
-   IAuthService e kullanýlacak metotlar tanýmlanýr.UserLoginDto ve UserRegisterDto larý oluþturuldu.
-   AuthManager kayýt olmak için gerekli operasyonlarý yazýyor
+12. Login ve Register iþlemleri için ;
+    IAuthService e kullanýlacak metotlar tanýmlanýr.UserLoginDto ve UserRegisterDto larý oluþturuldu.
+    AuthManager kayýt olmak için gerekli operasyonlarý yazýyor
 
 13.
 Product kýsmýnda;
@@ -70,3 +70,7 @@ Product kýsmýnda;
    
 User kýsmýnda;
    Kullanýcý; listeleme,ekleme,güncelleme,silme kýsmýnda Authorize olma þartý yok.
+
+14. Ürün listesinde ürün adýna göre filtreleme yapýldý.
+    Core katmanýna GetByFilter isminde metot oluþturuldu.
+	Dynamic classý oluþturup. Sort(çeþit) ve Filter fieldleri tanýmlandý.

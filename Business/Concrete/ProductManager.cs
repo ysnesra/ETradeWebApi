@@ -8,6 +8,7 @@ using Entities.DTOs.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +59,13 @@ namespace Business.Concrete
         public IDataResult<IPaginate<Product>> GetAll(PageRequest pageRequest)
         {
            return new SuccessDataResult<IPaginate<Product>>(_productDal.GetList(index:pageRequest.Page,size:pageRequest.PageSize),Messages.ProductsListed);
+        }
+        //Ürün adına göre filtreleme
+        public IDataResult<IPaginate<Product>> GetProductsByProductName(string filter,PageRequest pageRequest)
+        {
+            Expression<Func<Product, bool>> filterExpression = p => p.ProductName.Contains(filter);
+            IPaginate<Product> products = _productDal.GetByFilter(filterExpression,index:pageRequest.Page,size:pageRequest.PageSize);
+            return new SuccessDataResult<IPaginate<Product>>(products,Messages.ProductFilter);
         }
 
         //Tek bir ürün detayını getiren metot

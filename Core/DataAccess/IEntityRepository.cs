@@ -27,7 +27,7 @@ namespace Core.DataAccess
                              Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
                              int index = 0, int size = 10,
                              bool enableTracking = true);
-
+        IPaginate<T> GetByFilter(Expression<Func<T,bool>> filter, int index = 0, int size = 10);
         void Add(T entity);
 
         void Update(T entity);

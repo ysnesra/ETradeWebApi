@@ -1,9 +1,11 @@
 ﻿using Core.Entities;
 using Core.Paging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -62,6 +64,11 @@ namespace Core.DataAccess.Entityframework
             if (orderBy != null)
                 return orderBy(queryable).ToPaginate(index, size);
             return queryable.ToPaginate(index, size);
+        }
+        //Filtreleme
+        public IPaginate<TEntity> GetByFilter(Expression<Func<TEntity, bool>> filter,int index = 0, int size = 10)
+        {
+            return _context.Set<TEntity>().Where(filter).ToPaginate(index, size);
         }
 
         public void Update(TEntity entity)
