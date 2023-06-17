@@ -72,5 +72,6 @@ User kýsmýnda;
    Kullanýcý; listeleme,ekleme,güncelleme,silme kýsmýnda Authorize olma þartý yok.
 
 14. Ürün listesinde ürün adýna göre filtreleme yapýldý.
-    Core katmanýna GetByFilter isminde metot oluþturuldu.
-	Dynamic classý oluþturup. Sort(çeþit) ve Filter fieldleri tanýmlandý.
+    Core katmanýna GetByFilter isminde metot oluþturuldu.(Sayfalama da dahil edilerek)
+
+	
