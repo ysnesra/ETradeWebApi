@@ -30,8 +30,17 @@ Bu uygulama; , kullanıcıların ürünlerle ilgili bilgileri alabildiği, yeni 
 9. Jwt Authentication yapısı oluşturuldu.
   
 10. Login olan kişi database de varsa CreteToken metotuyla Jwt Token üretir.
-	 Autofac yapısı oluşturuldu.
+	 Autofac yapısı oluşturuldu.Ama kullanmadım.Role vermediğim için [Authorize] attribute ı yeterli oldu.
 
+11. Product kısmında;
+	   Kullanıcı login olduktan sonra işlem yapabiliyor.
+	   Bunun için; ProductController a [Authorize] attributeu koyuldu.
+	   Swagger da; login olunca oluşan token -> Authorize kısmına yapıştırılıp, login olup, işlemler öyle yapıldı.
+	   Ürün Listeleme,Ekleme,Güncelleme ve Silme işlemlerinde tokendaki userId kullanılanarak kontrol yapıldı. 
+   
+    User kısmında;
+	   Kullanıcı; listeleme,ekleme,güncelleme,silme kısmında Authorize olma şartı yok.
+   
 Kullanıcı üye olunca token üretip bu token ile Authorize oluyoruz:
 
 ![1Register_istek](https://github.com/ysnesra/ETradeWebApi/assets/104023688/64e86619-1d1d-4c4b-abfb-10ca1c0f01ec)
