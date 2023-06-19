@@ -28,5 +28,8 @@ namespace Business.Abstract
 
         //Ürünleri; ürün adına göre filtreli getiren metot
         IDataResult<IPaginate<Product>> GetProductsByProductName(string filter, PageRequest pageRequest);
+
+        //Ürünleri; ürün fiyatına göre filtreli getiren metot
+        public IDataResult<IPaginate<Product>> GetProductsByPrice(decimal filter, PageRequest pageRequest);
     }
 }

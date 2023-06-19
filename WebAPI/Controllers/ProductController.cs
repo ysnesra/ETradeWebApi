@@ -67,10 +67,23 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        //ürün adına göre filterli listeleme
         [HttpGet("getproductsbyfilter")]
         public IActionResult GetProductsByFilter(string productName,[FromQuery] PageRequest pageRequest)
         {
             var result = _productService.GetProductsByProductName(productName,pageRequest);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        //ürün fiyatına göre filtreleme
+        [HttpGet("getproductspricebyfilter")]
+        public IActionResult GetProductsPriceByFilter(decimal price, [FromQuery] PageRequest pageRequest)
+        {
+            var result = _productService.GetProductsByPrice(price, pageRequest);
             if (result.Success)
             {
                 return Ok(result);

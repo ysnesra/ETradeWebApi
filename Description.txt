@@ -74,4 +74,6 @@ User kýsmýnda;
 14. Ürün listesinde ürün adýna göre filtreleme yapýldý.
     Core katmanýna GetByFilter isminde metot oluþturuldu.(Sayfalama da dahil edilerek)
 
+15.Ürün listesinde ürün fiyatýna göre filtreleme yapýldý.
+
 	

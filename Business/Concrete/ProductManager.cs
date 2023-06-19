@@ -63,9 +63,25 @@ namespace Business.Concrete
         //Ürün adına göre filtreleme
         public IDataResult<IPaginate<Product>> GetProductsByProductName(string filter,PageRequest pageRequest)
         {
-            Expression<Func<Product, bool>> filterExpression = p => p.ProductName.Contains(filter);
+            Expression<Func<Product, bool>> filterExpression = p => p.ProductName.Contains(filter) && p.UserId == Convert.ToInt32(_userDal.CurrentUser(_contextAccessor));
             IPaginate<Product> products = _productDal.GetByFilter(filterExpression,index:pageRequest.Page,size:pageRequest.PageSize);
-            return new SuccessDataResult<IPaginate<Product>>(products,Messages.ProductFilter);
+            if (products.Items.Any())
+            {
+                return new SuccessDataResult<IPaginate<Product>>(products, Messages.ProductNameFilter);
+            }            
+            return new ErrorDataResult<IPaginate<Product>>( Messages.ProductNameNoFilter);
+        }
+       
+        //Ürün fiyatına göre filtreleme
+        public IDataResult<IPaginate<Product>> GetProductsByPrice(decimal filter, PageRequest pageRequest)
+        {
+            Expression<Func<Product, bool>> filterExpression = p => p.Price==filter && p.UserId== Convert.ToInt32(_userDal.CurrentUser(_contextAccessor));
+            IPaginate<Product> products = _productDal.GetByFilter(filterExpression, index: pageRequest.Page, size: pageRequest.PageSize);
+            if (products.Items.Any())
+            {
+                return new SuccessDataResult<IPaginate<Product>>(products, Messages.ProductPriceFilter);
+            }
+            return new ErrorDataResult<IPaginate<Product>>(Messages.ProductPriceNoFilter);
         }
 
         //Tek bir ürün detayını getiren metot

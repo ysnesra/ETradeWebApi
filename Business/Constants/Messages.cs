@@ -18,7 +18,12 @@ namespace Business.Constants
         public static string ProductUpdated = "Ürün bilgileri güncellendi";
         public static string ProductDeleted = "Ürün silindi";
         public static string ProductInvalid = "Ürün bulunamadı"; 
-        public static string ProductFilter = "Ürünler ; ürün adına göre filtreli listelendi"; 
+        public static string ProductNameFilter = "Ürünler ; ürün adına göre filtreli listelendi";
+        public static string ProductNameNoFilter = "Ürünler ; ürün adına göre filtrelenemez.Kullanıcın böyle bir ürünü yok";
+
+
+        public static string ProductPriceFilter = "Ürünler ; ürün fiyatına göre filtreli listelendi";
+        public static string ProductPriceNoFilter = "Ürünler ; ürün fiyatına göre filtrelenemez.Kullanıcın bu fiyatta ürünü yok";
 
         public static string UsersListed = "Kullanıcılar listelendi";
         public static string UserDetail = "Kullanıcının detay bilgilerini getirdi";        
