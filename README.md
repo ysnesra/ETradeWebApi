@@ -40,6 +40,9 @@ Bu uygulama; , kullanıcıların ürünlerle ilgili bilgileri alabildiği, yeni 
    
     User kısmında;
 	   Kullanıcı; listeleme,ekleme,güncelleme,silme kısmında Authorize olma şartı yok.
+
+12. Ürün listesinde ürün adına göre filtreleme yapıldı.
+    Core katmanına GetByFilter isminde metot oluşturuldu.(Sayfalama da dahil edilerek)
    
 Kullanıcı üye olunca token üretip bu token ile Authorize oluyoruz:
 
@@ -49,6 +52,18 @@ Kullanıcı üye olunca token üretip bu token ile Authorize oluyoruz:
 ![3Login_istek](https://github.com/ysnesra/ETradeWebApi/assets/104023688/96ba1256-e7ac-486f-93c0-2d6a4ae418f8)
 ![3Login_sonuc](https://github.com/ysnesra/ETradeWebApi/assets/104023688/bf38aa2a-ce36-40fb-a741-440972dedab6)
 
-Product ve User işlemleri Authorize olan kullanıcı için yapılır: 
-![4Product](https://github.com/ysnesra/ETradeWebApi/assets/104023688/fe5aff9b-f718-4100-9730-733324562aa0)
-![4user](https://github.com/ysnesra/ETradeWebApi/assets/104023688/151a72c6-f3a9-443b-a904-82208f24abc2)
+Product işlemleri Authorize olan kullanıcı için yapılır.
+
+GetProductsDetails metotuyla -> Ürün detayını kullanıcı ismi ile birlikte getirir: 
+![getproductDetails](https://github.com/ysnesra/ETradeWebApi/assets/104023688/6940de73-6eb5-458b-96f7-d74f581c9ede)
+![getproductDetails_sonuc](https://github.com/ysnesra/ETradeWebApi/assets/104023688/3b34cdb4-77db-469b-9e99-9c95f2b82c6f)
+
+GetProductByUserId metotuyla -> Login olan Kullanıcıya ait tüm ürünleri listeler:
+
+![getbyuserID](https://github.com/ysnesra/ETradeWebApi/assets/104023688/860fcaf8-f290-481c-8bd4-f3c00e504655)
+![getbyuserID_sonuc](https://github.com/ysnesra/ETradeWebApi/assets/104023688/02a9e035-3047-46e7-aeaf-d5783fdeb6c3)
+
+Ürünler; ürün adına göre filtrelenerek listelenir:
+![filter](https://github.com/ysnesra/ETradeWebApi/assets/104023688/e42630ef-ab35-466d-8eb5-a713e6166fe0)
+![filter_sonuc](https://github.com/ysnesra/ETradeWebApi/assets/104023688/d1d858e5-dbf3-4149-ade7-04c856a6cd4e)
+
